@@ -149,12 +149,11 @@ const events = fetch(`${baseURL}/event`)
         event.name,
         event.date,
         event.time,
-        event.venue,
         event.type
       );
     })
   )
-  .catch((error) => console.error("Error:", error));
+  .catch((error) => console.error({ Error: error }));
 
 document.addEventListener("DOMContentLoaded", () => {
   // Get the form and all step elements
