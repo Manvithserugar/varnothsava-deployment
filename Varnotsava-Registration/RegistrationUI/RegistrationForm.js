@@ -7,7 +7,7 @@ const management_events = document.querySelector(".management-events");
 const form = document.querySelector("[data-multi-step]");
 let count = 0;
 // import config from "./config";
-const baseURL = "/api/v1";
+const baseURL = "https://varnauthsava.vercel.app/api/v1";
 const inputFieldState = {
   name: "",
   usn: "",
