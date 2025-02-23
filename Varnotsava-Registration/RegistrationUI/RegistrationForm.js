@@ -6,8 +6,8 @@ const management = document.querySelector(".management");
 const management_events = document.querySelector(".management-events");
 const form = document.querySelector("[data-multi-step]");
 let count = 0;
-import config from "./config";
-const baseURL = config.baseURL;
+// import config from "./config";
+const baseURL = "/api/v1";
 const inputFieldState = {
   name: "",
   usn: "",
