@@ -34,7 +34,6 @@ function createEventCard(
   eventTitle,
   eventDate,
   eventTime,
-  eventDescription,
   eventType
 ) {
   const eventCard = document.createElement("div");
@@ -153,7 +152,7 @@ const events = fetch(`${baseURL}/event`)
       );
     })
   )
-  .catch((error) => console.error({ Error: error }));
+  .catch((error) => console.error({ Error: error.message }));
 
 document.addEventListener("DOMContentLoaded", () => {
   // Get the form and all step elements
