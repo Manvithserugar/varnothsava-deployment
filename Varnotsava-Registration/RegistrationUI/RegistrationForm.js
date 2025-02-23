@@ -138,9 +138,13 @@ function createEventCard(
 //   });
 // }
 
-const events = fetch(`${baseURL}/event`)
-  .then((response) => response.json())
-  .then((data) =>
+async function fetchEvents() {
+  try {
+    const response = await fetch(`${baseURL}/event`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
     data.forEach((event) => {
       createEventCard(
         event._id,
@@ -150,9 +154,13 @@ const events = fetch(`${baseURL}/event`)
         event.time,
         event.type
       );
-    })
-  )
-  .catch((error) => console.error({ Error: error.message }));
+    });
+  } catch (error) {
+    console.error(`Error fetching events: ${error.message}`);
+  }
+}
+
+fetchEvents();
 
 document.addEventListener("DOMContentLoaded", () => {
   // Get the form and all step elements
