@@ -10,7 +10,7 @@
     <div class="pay-container"></div>
     <div class="pretext">
       <h2>Payment</h2>
-      </div>
+    </div>
     <div class="offline">
       <h3>Offline Mode</h3>
       <div class="info">
@@ -19,21 +19,25 @@
         registration. Please note that the payment status will remain pending
         until you pay on-site at the event.
       </div>
-      <button>Proceed with Offline Payment</button>
+      <button class="offline-button">Proceed with Offline Payment</button>
     </div>
     <div class="online">
       <h3>Online Mode</h3>
       <div class="info">
-        <p>After choosing this mode, scan the provided QR code using your UPI app
-        and pay the required amount. Once the payment is complete, you’ll
-        receive a QR code via email. This QR code must be scanned at the event
-        venue to confirm your registration.</p> 
-        <p>Additionally, you’ll need to
-        upload a snapshot of the payment receipt from your UPI app, which
-        includes the transaction ID, as proof for verification.</p>
+        <p>
+          After choosing this mode, scan the provided QR code using your UPI app
+          and pay the required amount. Once the payment is complete, you’ll
+          receive a QR code via email. This QR code must be scanned at the event
+          venue to confirm your registration.
+        </p>
+        <p>
+          Additionally, you’ll need to upload a snapshot of the payment receipt
+          from your UPI app, which includes the transaction ID, as proof for
+          verification.
+        </p>
       </div>
       <div class="qr-code"></div>
-      <img src="QR_code.svg" alt="qrcode" />
+      <img src="qrcode_img.jpg" alt="qrcode" />
       <p>
         Please upload the screenshot of the payment containing transaction id
       </p>
@@ -46,33 +50,19 @@
           id="transaction-snap"
           class="file-input"
         />
-        <div id="image-preview"></div> <!-- Container for preview -->
+        <p id="message"></p>
+        <div id="image-preview"></div>
+        <!-- Container for preview -->
       </form>
-      <button form="screen-shot" type="submit" style="display: block; margin: 20px auto;">Submit</button>
-      
-      <script>
-        document.getElementById("transaction-snap").addEventListener("change", function (event) {
-          const file = event.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-              const previewContainer = document.getElementById("image-preview");
-              previewContainer.innerHTML = ""; // Clear previous preview
-              const img = document.createElement("img");
-              img.src = e.target.result;
-              img.alt = "Uploaded Preview";
-              img.style.maxWidth = "200px"; // Adjust as needed
-              img.style.marginTop = "10px";
-              img.style.border = "1px solid #ccc";
-              img.style.borderRadius = "5px";
-              previewContainer.appendChild(img);
-            };
-            reader.readAsDataURL(file);
-          }
-        });
-      </script>
-      
-
+      <button
+        form="screen-shot"
+        type="submit"
+        style="display: block; margin: 20px auto"
+        class="online-button"
+      >
+        Submit
+      </button>
+      <script src="./Payment.js"></script>
     </div>
   </body>
 </html>

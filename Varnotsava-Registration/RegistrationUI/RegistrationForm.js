@@ -3,10 +3,19 @@ const cultural_events = document.querySelector(".cultural-events");
 const technical = document.querySelector(".technical");
 const cultural = document.querySelector(".cultural");
 const management = document.querySelector(".management");
-const management_events = document.querySelector(".management-events")
+const management_events = document.querySelector(".management-events");
 const form = document.querySelector("[data-multi-step]");
-let count = 0; // Tracks the number of selected cards
-
+let count = 0;
+import config from "./config";
+const baseURL = config.baseURL;
+const inputFieldState = {
+  name: "",
+  usn: "",
+  college: "",
+  email: "",
+  phone: "",
+  events: [],
+};
 const proceedButton = document.querySelector(".proceed");
 
 function toggleProceedButton() {
@@ -64,8 +73,8 @@ function createEventCard(
 
   const dtaeDiv = document.createElement("div");
   dtaeDiv.className = "date";
-  dtaeDiv.textContent = `Date: ${eventDate}` ;
-  details.appendChild(dtaeAndTime)
+  dtaeDiv.textContent = `Date: ${eventDate}`;
+  details.appendChild(dtaeAndTime);
 
   const timeDiv = document.createElement("div");
   timeDiv.className = "time";
@@ -76,7 +85,7 @@ function createEventCard(
 
   const description = document.createElement("div");
   description.className = "time";
-  description.className="date";
+  description.className = "date";
   // description.textContent = eventDescription;
 
   titleAndDate.appendChild(title);
@@ -92,10 +101,14 @@ function createEventCard(
     if (checkBox.checked) {
       checkBox.checked = false;
       eventCard.classList.remove("checked");
+      inputFieldState.events = inputFieldState.events.filter(
+        (event) => event !== checkBox.value
+      );
       count--;
     } else {
       checkBox.checked = true;
       eventCard.classList.add("checked");
+      inputFieldState.events.push(checkBox.value);
       count++;
     }
     // toggleCards();
@@ -108,8 +121,7 @@ function createEventCard(
   } else if (eventType === "cultural") {
     cultural.classList.add("active");
     cultural_events.appendChild(eventCard);
-  }
-  else{
+  } else {
     management.classList.add("active");
     management_events.appendChild(eventCard);
   }
@@ -127,252 +139,22 @@ function createEventCard(
 //   });
 // }
 
-const arr = [
-  {
-    img: "./Events/algorithm.jpeg",
-    title: "ALGORITHM ROULETTE",
-    date: "20/03/2025",
-    time: "10:00 am",
-    type: "technical",
-
-  },
-  {
-    img: "./Events/code.jpeg",
-    title: "CODE RESURRECT",
-    date: "20/03/2025",
-    time: "10:00 am",
-    type: "technical",
-
-  },
-  {
-    img: "./Events/hunt.jpeg",
-    title: "HACK HUNT",
-    date: "20/03/2025",
-    time: "10:00 am",
-    type: "technical",
-
-  },
-  {
-    img: "./Events/squid1.jpeg",
-    title: "SQUID HUNT",
-    date: "21/03/2025",
-    time: "10:00 am",
-    type: "technical",
-
-  },
-  {
-    img: "./Events/lan.jpeg",
-    title: "LAN PARTY",
-    date: "21/03/2025",
-    time: "10:00 am",
-    type: "technical",
-
-  },
-  {
-    img: "./Events/line.jpeg",
-    title: "FASTEST LINE FOLLOWER",
-    date: "20/03/2025",
-    time: "10:00 am",
-    type: "technical",
-
-  },
-  {
-    img: "./Events/robo.jpeg",
-    title: "ROBO SOCCER",
-    date: "21/03/2025",
-    time: "10:00 am",
-    type: "technical",
-
-  },
-  {
-    img: "./Events/plane.jpeg",
-    title: "WRIGHT BROTHERS",
-    date: "21/03/2025",
-    time: "10:00 am",
-    type: "technical",
-
-  },
-  {
-    img: "./Events/elect.jpeg",
-    title: "ELECTRO DETECTIVES",
-    date: "20/03/2025",
-    time: "10:00 am",
-    type: "technical",
-
-  },
-  {
-    img: "./Events/route.jpeg",
-    title: "ROUTE RUSH",
-    date: "21/03/2025",
-    time: "10:00 am",
-    type: "technical",
-
-  },
-  {
-    img: "./Events/1.jpeg",
-    title: "SHRITHI SAMRAT",
-    date: "20/03/2025",
-    time: "10:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/2.png",
-    title: "RAAG RUMBLE",
-    date: "20/03/2025",
-    time: "11:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/3.jpeg",
-    title: "THANDAV TAAL",
-    date: "21/03/2025",
-    time: "9:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/4.jpeg",
-    title: "GROOVE GALA",
-    date: "21/03/2025",
-    time: "10:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/5.jpeg",
-    title: "SPEECH OF SMILES",
-    date: "20/03/2025",
-    time: "10:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/6.jpeg",
-    title: "SILENT SYMPHONY",
-    date: "21/03/2025",
-    time: "12:00 pm",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/7.jpeg",
-    title: "WHO AM I?",
-    date: "21/03/2025",
-    time: "10:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/8.jpeg",
-    title: "AAKRITHI",
-    date: "21/03/2025",
-    time: "11:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/9.jpeg",
-    title: "NATURE'S PALETTE",
-    date: "21/03/2025",
-    time: "9:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/10.jpeg",
-    title: "HASTHAKALA",
-    date: "21/03/2025",
-    time: "1:00 pm",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/11.jpeg",
-    title: "MELODY CHAIN",
-    date: "20/03/2025",
-    time: "11:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/12.jpeg",
-    title: "REEL-O-MANIA",
-    date: "20/03/2025 and 21/03/2025",
-    time: "9:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/13.jpeg",
-    title: "FOCUS TO PRIZE",
-    date: "20/03/2025 and 21/03/2025",
-    time: "9:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/14.jpeg",
-    title: "KALA SANGAMA",
-    date: "21/03/2025",
-    time: "1:15 pm",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/15.jpeg",
-    title: "SHADES N STROKES",
-    date: "21/03/2025",
-    time: "12:00 pm",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/16.jpeg",
-    title: "EXPRESSION SPEAKS",
-    date: "21/03/2025",
-    time: "11:00 am",
-    type: "cultural",
-
-  },
-  {
-    img: "./Events/17.jpeg",
-    title: "STRATEGIC STOXX",
-    date: "20/03/2025",
-    time: "10:00 am",
-    type: "business",
-
-  },
-  {
-    img: "./Events/18.jpeg",
-    title: "VISIONARY VENTURES",
-    date: "20/03/2025",
-    time: "10:00 am",
-    type: "business",
-
-  },
-  {
-    img: "./Events/19.jpeg",
-    title: "THE ULTIMATE BIZ TEAM",
-    date: "20/03/2025",
-    time: "10:00 am",
-    type: "business",
-
-  },
-];
-
-arr.forEach((event) => {
-  createEventCard(
-    event.id,
-    event.img,
-    event.title,
-    event.date,
-    event.time,
-    event.description,
-    event.type
-  );
-});
+const events = fetch(`${baseURL}/api/v1/event`)
+  .then((response) => response.json())
+  .then((data) =>
+    data.forEach((event) => {
+      createEventCard(
+        event._id,
+        event.img,
+        event.name,
+        event.date,
+        event.time,
+        event.venue,
+        event.type
+      );
+    })
+  )
+  .catch((error) => console.error("Error:", error));
 
 document.addEventListener("DOMContentLoaded", () => {
   // Get the form and all step elements
@@ -461,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Attach event listeners to each input field (both for real-time and blur validation)
-  nameInput.addEventListener("input", () => {
+  nameInput.addEventListener("input", (e) => {
     validateField(
       nameInput,
       namePattern,
@@ -470,6 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
       nameMsg,
       "name"
     );
+    inputFieldState.name = e.target.value;
   });
   nameInput.addEventListener("blur", () => {
     validateField(
@@ -482,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  usnInput.addEventListener("input", () => {
+  usnInput.addEventListener("input", (e) => {
     validateField(
       usnInput,
       usnPattern,
@@ -491,6 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
       usnMsg,
       "usn"
     );
+    inputFieldState.usn = e.target.value;
   });
   usnInput.addEventListener("blur", () => {
     validateField(
@@ -503,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  collegeInput.addEventListener("input", () => {
+  collegeInput.addEventListener("input", (e) => {
     validateField(
       collegeInput,
       collegePattern,
@@ -512,6 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
       collegeMsg,
       "college"
     );
+    inputFieldState.college = e.target.value;
   });
   collegeInput.addEventListener("blur", () => {
     validateField(
@@ -524,7 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  emailInput.addEventListener("input", () => {
+  emailInput.addEventListener("input", (e) => {
     validateField(
       emailInput,
       emailPattern,
@@ -533,6 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
       emailMsg,
       "email"
     );
+    inputFieldState.email = e.target.value;
   });
   emailInput.addEventListener("blur", () => {
     validateField(
@@ -545,7 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  phoneInput.addEventListener("input", () => {
+  phoneInput.addEventListener("input", (e) => {
     validateField(
       phoneInput,
       phonePattern,
@@ -554,6 +340,7 @@ document.addEventListener("DOMContentLoaded", () => {
       phoneMsg,
       "phone"
     );
+    inputFieldState.phone = e.target.value;
   });
   phoneInput.addEventListener("blur", () => {
     validateField(
@@ -581,9 +368,27 @@ document.addEventListener("DOMContentLoaded", () => {
     showCurrentStep();
   });
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    window.location.href = "./Payment.html";
+    //register the students to the server
+    try {
+      const response = await fetch(`${baseURL}/api/v1/registration`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputFieldState),
+      });
+
+      if (response.ok) {
+        console.log("Request successful, status:", response.status);
+        window.location.href = "./Payment.html";
+      } else {
+        console.error("Request failed, status:", response.status);
+      }
+    } catch (error) {
+      console.error("Network error or other issue:", error);
+    }
   });
 
   proceedButton.addEventListener("click", (event) => {

@@ -7,7 +7,7 @@
 
 body {
   background: linear-gradient(135deg, #1c1f2b, #2a2d3e);
-  font-family: 'Poppins', Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   margin: 4vw;
   display: flex;
   flex-direction: column;
@@ -162,7 +162,6 @@ button:hover {
   box-shadow: 0 10px 20px rgba(0, 230, 230, 0.5);
 } */
 
-
 /* button {
   background: linear-gradient(135deg, #00e6e6, #007bff);
   border: none;
@@ -174,7 +173,6 @@ button:hover {
   cursor: pointer;
   transition: all 0.3s ease;
 } */
-
 
 .file-label {
   margin-top: 20px;
@@ -195,6 +193,21 @@ button:hover {
   transform: scale(1.05);
 }
 
+#message.error {
+  margin-top: 0.5rem;
+  color: rgb(209, 0, 0);
+  font-style: italic;
+  font-size: small;
+}
+
+.online-button.disabled {
+  background-color: rgb(173, 173, 173);
+  color: #676767;
+  pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* Animations */
 /* @keyframes fadeIn {
   0% { opacity: 0; }
@@ -213,7 +226,8 @@ button:hover {
     gap: 1vw;
   }
 
-  .offline, .online {
+  .offline,
+  .online {
     padding: 1.5rem;
   }
 
@@ -223,7 +237,8 @@ button:hover {
 }
 
 @media (max-width: 480px) {
-  .offline, .online {
+  .offline,
+  .online {
     padding: 1rem;
   }
 
