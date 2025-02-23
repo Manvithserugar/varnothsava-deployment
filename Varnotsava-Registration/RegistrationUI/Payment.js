@@ -3,9 +3,10 @@ const onlineBtn = document.querySelector(".online-button");
 const form = document.getElementById("screen-shot");
 const fileInput = document.getElementById("transaction-snap");
 const message = document.getElementById("message");
+const baseURL = "/api/v1";
 
 offlineBtn.addEventListener("click", async () => {
-  const response = await fetch("`${baseURL}/api/v1/payment/offline`", {
+  const response = await fetch(`${baseURL}/payment/offline`, {
     method: "POST",
     // credentials: "include",
     headers: {
@@ -60,7 +61,7 @@ form.addEventListener("submit", async (event) => {
       const formData = new FormData();
       formData.append("file", fileInput.files[0]);
 
-      const response = await fetch(`${baseURL}/api/v1/payment/online`, {
+      const response = await fetch(`${baseURL}/payment/online`, {
         method: "POST",
         body: formData,
       });

@@ -139,7 +139,7 @@ function createEventCard(
 //   });
 // }
 
-const events = fetch(`${baseURL}/api/v1/event`)
+const events = fetch(`${baseURL}/event`)
   .then((response) => response.json())
   .then((data) =>
     data.forEach((event) => {
@@ -372,7 +372,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     //register the students to the server
     try {
-      const response = await fetch(`${baseURL}/api/v1/registration`, {
+      const response = await fetch(`${baseURL}/registration`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
