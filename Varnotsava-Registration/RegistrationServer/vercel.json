@@ -12,7 +12,11 @@
       "dest": "server.js"
     },
     {
-      "src": "/(.*)", 
+      "src": "/varnauthsava/(.*)", 
+      "dest": "server.js"
+    },
+    {
+      "src": "/image/(.*)", 
       "dest": "server.js"
     }
   ]
