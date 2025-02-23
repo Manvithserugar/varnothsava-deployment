@@ -3,7 +3,7 @@ const onlineBtn = document.querySelector(".online-button");
 const form = document.getElementById("screen-shot");
 const fileInput = document.getElementById("transaction-snap");
 const message = document.getElementById("message");
-const baseURL = "/api/v1";
+const baseURL = "https://varnauthsava.vercel.app/api/v1";
 
 offlineBtn.addEventListener("click", async () => {
   const response = await fetch(`${baseURL}/payment/offline`, {
