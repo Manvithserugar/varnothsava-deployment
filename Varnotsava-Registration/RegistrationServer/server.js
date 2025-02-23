@@ -35,7 +35,7 @@ connectDB();
 checkConnection();
 // insertEvent();
 
-const apiBasePath = "/api/v1";
+const apiBasePath = "https://varnauthsava.vercel.app/api/v1";
 
 app.use(`${apiBasePath}/registration`, registrationRoute);
 app.use(`${apiBasePath}/event`, eventRoute);
