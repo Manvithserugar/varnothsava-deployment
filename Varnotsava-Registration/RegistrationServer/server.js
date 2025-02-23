@@ -24,8 +24,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use("/image", express.static(path.join(__dirname, "Events")));
-// app.use("/student/register", express.static("../RegistrationUI"));
-app.use("/varnauthsava", express.static("../../"));
+app.use("/varnauthsava", express.static(path.join(__dirname, "../../")));
 
 app.get("/", (req, res) => {
   res.status(301).redirect("/varnauthsava/");
@@ -36,10 +35,13 @@ checkConnection();
 // insertEvent();
 
 const apiBasePath = "/api/v1";
+
+// Logging middleware
 app.use((req, res, next) => {
   console.log(`Request received: ${req.method} ${req.url}`);
   next();
 });
+
 app.use(`${apiBasePath}/registration`, registrationRoute);
 app.use(`${apiBasePath}/event`, eventRoute);
 app.use(`${apiBasePath}/payment`, paymentRoute);
