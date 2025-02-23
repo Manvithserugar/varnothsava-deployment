@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Event = require("../models/Event");
-const baseURL = "https://varnauthsava.vercel.app/api/v1";
+const baseURL = "/api/v1";
 
 const fetchEvents = async (req, res) => {
   try {
