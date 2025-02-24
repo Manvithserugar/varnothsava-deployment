@@ -23,11 +23,10 @@ app.get("/health", (req, res) => {
   res.status(200).send("Server up and running");
 });
 
-app.use("/image", express.static(path.join(__dirname, "Events")));
-app.use("/varnauthsava", express.static(path.join(__dirname, "../../")));
+app.use("/", express.static(path.join(__dirname, "../../")));
 
 app.get("/", (req, res) => {
-  res.status(301).redirect("/varnauthsava/");
+  res.status(200).sendFile(path.join(__dirname, "../../index.html"));
 });
 
 connectDB();
@@ -35,12 +34,13 @@ checkConnection();
 // insertEvent();
 
 const apiBasePath = "/api/v1";
+app.use(`${apiBasePath}/image`, express.static(path.join(__dirname, "Events")));
 
 // Logging middleware
-app.use((req, res, next) => {
-  console.log(`Request received: ${req.method} ${req.url}`);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(`Request received: ${req.method} ${req.url}`);
+//   next();
+// });
 
 app.use(`${apiBasePath}/registration`, registrationRoute);
 app.use(`${apiBasePath}/event`, eventRoute);
