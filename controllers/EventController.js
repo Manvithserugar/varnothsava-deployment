@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Event = require("../models/Event");
-const baseURL = "./api/v1";
+const baseURL = "/api/v1";
 
 const fetchEvents = async (req, res) => {
   try {
@@ -10,7 +10,7 @@ const fetchEvents = async (req, res) => {
     }
     events.map((event) => {
       if (event.imgID) {
-        event.img = `../../${baseURL}/image/${event.imgID}`;
+        event.img = `${baseURL}/image/${event.imgID}`;
       } else {
         console.error("image not found");
       }

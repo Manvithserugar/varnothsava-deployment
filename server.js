@@ -23,10 +23,10 @@ app.get("/health", (req, res) => {
   res.status(200).send("Server up and running");
 });
 
-app.use("/", express.static(path.join(__dirname, "../../")));
+app.use("/", express.static(__dirname));
 
 app.get("/", (req, res) => {
-  res.status(200).sendFile(path.join(__dirname, "../../index.html"));
+  res.status(200).sendFile(path.join(__dirname, "index.html"));
 });
 
 connectDB();
@@ -49,5 +49,3 @@ app.use(`${apiBasePath}/payment`, paymentRoute);
 app.listen(port, () => {
   console.log(`server listening on port: ${port}`);
 });
-
-
