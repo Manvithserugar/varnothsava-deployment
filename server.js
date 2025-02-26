@@ -23,15 +23,15 @@ app.get("/health", (req, res) => {
   res.status(200).send("Server up and running");
 });
 
-app.use("/", express.static(path.join(__dirname)));
-
-app.get("/", (req, res) => {
-  res.status(200).sendFile(path.join(__dirname, "index.html"));
-});
-
 connectDB();
 checkConnection();
 // insertEvent();
+
+app.use("/", express.static(path.join(__dirname)));
+
+app.get("/(*)", (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, "index.html"));
+});
 
 const apiBasePath = "/api/v1";
 app.use(`${apiBasePath}/image`, express.static(path.join(__dirname, "Events")));
