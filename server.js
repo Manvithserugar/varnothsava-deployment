@@ -34,7 +34,10 @@ app.get("/(*)", (req, res) => {
 });
 
 const apiBasePath = "/api/v1";
-app.use(`${apiBasePath}/image`, express.static(path.join(__dirname, "Events")));
+app.use(
+  `${apiBasePath}/image/`,
+  express.static(path.join(__dirname, "Events"))
+);
 
 // Logging middleware
 // app.use((req, res, next) => {
